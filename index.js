@@ -31,8 +31,8 @@ var minOnAttrJS = function(js) {
 
 var defaultOptions = {
     html5: true,
-    cssmin: true,
     jsmin: true,
+    cssmin: true,
     caseSensitive: true,
     removeComments: true,
     removeIgnored: false,
@@ -216,10 +216,10 @@ var htmlmin = function(str, options) {
             }
 
             //IE conditional comment
-            if (/(<!)?\[[^\]]+\](>)?/.test(text)) {
-                var comments = text.match(/(<!)?\[[^\]]+\](>)?/g);
-                text = htmlmin(text.replace(/(<!)?\[[^\]]+\](>)?/g, ''))
-
+            var conditionalReg = /^\[[^\]]+\](>)?|(<!)?\[[^\]]+\]$/mg
+            if (conditionalReg.test(text)) {
+                var comments = text.match(conditionalReg);
+                text = htmlmin(text.replace(conditionalReg, ''))
                 rst.push('<!--' + comments[0] + text + comments[1] + '-->');
             }
 
@@ -240,5 +240,6 @@ var htmlmin = function(str, options) {
     htmlParser(str, handlers)
     return rst.join('')
 }
+
 
 exports = module.exports = htmlmin;
