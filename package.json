@@ -1,0 +1,23 @@
+{
+  "name": "htmlmin",
+  "version": "0.0.1",
+  "description": "A simple HTML minifier",
+  "main": "index.js",
+  "bin": {
+    "htmlmin": "./bin/htmlmin"
+  },
+  "author": {
+    "name": "Jser.me",
+    "url": "http://jser.me"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/jserme/htmlmin"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "clean-css": "^2.1.8",
+    "mocha": "^1.18.2",
+    "uglify-js": "^2.4.13"
+  }
+}
