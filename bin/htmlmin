@@ -99,8 +99,8 @@ function minify(data) {
 }
 
 function output(minified) {
-    if (options.target)
-        fs.writeFileSync(options.target, minified, 'utf8');
+    if (commands.output)
+        fs.writeFileSync(commands.output, minified, 'utf8');
     else
         process.stdout.write(minified);
 }
