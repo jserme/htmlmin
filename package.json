@@ -3,6 +3,9 @@
   "version": "0.0.2",
   "description": "A simple HTML minifier",
   "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
   "bin": {
     "htmlmin": "./bin/htmlmin"
   },
@@ -15,7 +18,7 @@
     "url": "http://github.com/jserme/htmlmin"
   },
   "devDependencies": {
-    "mocha": "^1.18.2"
+    "mocha": "^2.2.5"
   },
   "dependencies": {
     "clean-css": "^2.1.8",
