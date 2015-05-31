@@ -14,11 +14,12 @@
     "type": "git",
     "url": "http://github.com/jserme/htmlmin"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "^1.18.2"
+  },
   "dependencies": {
     "clean-css": "^2.1.8",
     "commander": "^2.2.0",
-    "mocha": "^1.18.2",
     "uglify-js": "^2.4.13"
   }
 }
