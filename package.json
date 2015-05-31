@@ -4,7 +4,8 @@
   "description": "A simple HTML minifier",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "patch-release": "npm version patch && npm publish && git push --follow-tags"
   },
   "bin": {
     "htmlmin": "./bin/htmlmin"
@@ -24,5 +25,6 @@
     "clean-css": "^2.1.8",
     "commander": "^2.2.0",
     "uglify-js": "^2.4.13"
-  }
+  },
+  "license": "MIT"
 }
