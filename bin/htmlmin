@@ -1,18 +1,15 @@
 #!/usr/bin/env node
 
-/* jshint latedef: false */
+var fs = require('fs')
+var path = require('path')
+var htmlmin = require('../index')
 
-var util = require('util');
-var fs = require('fs');
-var path = require('path');
-var htmlmin = require('../index');
+var commands = require('commander')
 
-var commands = require('commander');
+var packageConfig = fs.readFileSync(path.join(path.dirname(fs.realpathSync(process.argv[1])), '../package.json'))
+var buildVersion = JSON.parse(packageConfig).version
 
-var packageConfig = fs.readFileSync(path.join(path.dirname(fs.realpathSync(process.argv[1])), '../package.json'));
-var buildVersion = JSON.parse(packageConfig).version;
-
-var isWindows = process.platform == 'win32';
+var isWindows = process.platform == 'win32'
 
 // Specify commander options to parse command line params correctly
 commands
@@ -28,17 +25,17 @@ commands
   .option('-o, --output [output-file]', 'Use [output-file] as output instead of STDOUT')
 
 commands.on('--help', function() {
-  util.puts('  Examples:\n');
-  util.puts('    %> htmlmin one.html');
-  util.puts('    %> htmlmin -o one-min.html one.html');
+  console.log('  Examples:\n')
+  console.log('    %> htmlmin one.html')
+  console.log('    %> htmlmin -o one-min.html one.html')
   if (isWindows) {
-    util.puts('    %> type one.html two.html three.html | htmlmin -o merged-and-minified.html');
+    console.log('    %> type one.html two.html three.html | htmlmin -o merged-and-minified.html')
   } else {
-    util.puts('    %> cat one.html two.html three.html | htmlmin -o merged-and-minified.html');
-    util.puts('    %> cat one.html two.html three.html | htmlmin | gzip -9 -c > merged-minified-and-gzipped.html.gz');
+    console.log('    %> cat one.html two.html three.html | htmlmin -o merged-and-minified.html')
+    console.log('    %> cat one.html two.html three.html | htmlmin | gzip -9 -c > merged-minified-and-gzipped.html.gz')
   }
-  util.puts('');
-  process.exit();
+  console.log('')
+  process.exit()
 });
 
 commands.parse(process.argv);
@@ -52,27 +49,33 @@ var minOptions = {}
 var fromStdin = !process.env.__DIRECT__ && !process.stdin.isTTY
 
 if (!fromStdin && commands.args.length === 0) {
-  commands.outputHelp();
+  commands.outputHelp()
   return 0
 }
 
-if (commands.nojsmin)
-  minOptions.jsmin = false;
-if (commands.nocssmin)
-  minOptions.cssmin = false;
-if (commands.notCaseSensitive)
-  minOptions.caseSensitive = false;
-if (commands.notRemoveComments)
-  minOptions.removeComments = false;
-if (commands.removeIgnored)
-  minOptions.removeIgnored = true;
-if (commands.collapseWhitespace)
-  minOptions.collapseWhitespace = true;
+if (commands.nojsmin) {
+  minOptions.jsmin = false
+}
+if (commands.nocssmin) {
+  minOptions.cssmin = false
+}
+if (commands.notCaseSensitive) {
+  minOptions.caseSensitive = false
+}
+if (commands.notRemoveComments) {
+  minOptions.removeComments = false
+}
+if (commands.removeIgnored) {
+  minOptions.removeIgnored = true
+}
+if (commands.collapseWhitespace) {
+  minOptions.collapseWhitespace = true
+}
 
 if (commands.args.length > 0) {
-  var source = commands.args[0];
-  options.source = source;
-  minOptions.relativeTo = path.dirname(path.resolve(source));
+  var source = commands.args[0]
+  options.source = source
+  minOptions.relativeTo = path.dirname(path.resolve(source))
 }
 
 if (options.source) {
@@ -99,8 +102,9 @@ function minify(data) {
 }
 
 function output(minified) {
-  if (options.target)
-    fs.writeFileSync(options.target, minified, 'utf8');
-  else
+  if (commands.output) {
+    fs.writeFileSync(commands.output, minified, 'utf8')
+  } else {
     process.stdout.write(minified);
+  }
 }
