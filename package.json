@@ -14,10 +14,7 @@
     "name": "Jser.me",
     "url": "http://jser.me"
   },
-  "repository": {
-    "type": "git",
-    "url": "http://github.com/jserme/htmlmin"
-  },
+  "repository": "http://github.com/jserme/htmlmin",
   "devDependencies": {
     "mocha": "^2.2.5"
   },

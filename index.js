@@ -1,10 +1,10 @@
 var htmlParser = require('./lib/htmlparser').HTMLParser
 var CleanCSS = require('clean-css')
-var UglifyJS = require("uglify-js")
+var UglifyJS = require('uglify-js')
 
 var cssmin = function(inlineCSS) {
   var rst = ''
-  rst = new CleanCSS().minify(inlineCSS);
+  rst = new CleanCSS().minify(inlineCSS)
   rst = rst.replace(/;$/, '')
   return rst
 }
