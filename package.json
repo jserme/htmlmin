@@ -1,10 +1,10 @@
 {
   "name": "htmlmin",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A simple HTML minifier",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "standard index.js && mocha",
     "patch-release": "npm version patch && npm publish && git push --follow-tags"
   },
   "bin": {
@@ -16,12 +16,13 @@
   },
   "repository": "http://github.com/jserme/htmlmin",
   "devDependencies": {
-    "mocha": "^2.2.5"
+    "mocha": "^2.2.5",
+    "standard": "^5.4.1"
   },
   "dependencies": {
-    "clean-css": "^2.1.8",
-    "commander": "^2.2.0",
-    "uglify-js": "^2.4.13"
+    "clean-css": "~2.1.8",
+    "commander": "~2.2.0",
+    "uglify-js": "~2.4.13"
   },
   "license": "MIT"
 }
