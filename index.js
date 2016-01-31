@@ -4,9 +4,17 @@ var UglifyJS = require('uglify-js')
 
 function cssmin (inlineCSS) {
   var rst = ''
-  rst = new CleanCSS().minify(inlineCSS)
+  rst = new CleanCSS().minify(inlineCSS).styles
   rst = rst.replace(/;$/, '')
   return rst
+}
+
+function minOnAttrCSS (css) {
+  var code = '_htmlmin_temp{' + css + '}'
+  code = cssmin(code)
+  code = code.replace(/_htmlmin_temp\{/, '')
+  code = code.replace(/\}$/, '')
+  return code
 }
 
 function jsmin (inlineJS, options) {
@@ -128,7 +136,7 @@ function htmlmin (str, options) {
 
         if (v.value !== undefined) {
           if (v.name === 'style') {
-            val = cssmin(v.value)
+            val = minOnAttrCSS(v.value)
           }
 
           if (/^on(.)+/i.test(v.name)) {
