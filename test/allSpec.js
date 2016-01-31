@@ -302,7 +302,7 @@ describe('htmlmin', function () {
 
   it('remove comments from styles', function () {
     input = '<style type="text/css"><!-- p { color: red } --><\/style>'
-    output = '<style><!-- p{color:red}--><\/style>'
+    output = '<style><!-- p{color:red} --><\/style>'
     assert.equal(htmlmin(input, {
       removeCommentsFromCDATA: true
     }), output)
