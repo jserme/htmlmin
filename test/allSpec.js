@@ -103,6 +103,9 @@ describe('htmlmin', function () {
       'u'
     ]
     list.forEach(function (el) {
+      assert.equal(htmlmin('<h2>foo <' + el + '>baz</' + el + '> bar</h2>', {
+        collapseWhitespace: true
+      }), '<h2>foo <' + el + '>baz</' + el + '> bar</h2>')
       assert.equal(htmlmin('<p>foo <' + el + '>baz</' + el + '> bar</p>', {
         collapseWhitespace: true
       }), '<p>foo <' + el + '>baz</' + el + '> bar</p>')
