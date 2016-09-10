@@ -1,6 +1,6 @@
 {
   "name": "htmlmin",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A simple HTML minifier",
   "main": "index.js",
   "scripts": {
