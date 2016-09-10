@@ -213,12 +213,15 @@ function htmlmin (str, options) {
       }
 
       if (options.collapseWhitespace) {
+
+        var nonCollapsedWhiteSpaceElements = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+
         // left trim
         if (lastTag) {
           text = text.replace(/^[\n\s\t\r]+/im, '')
         }
 
-        if (lastTag !== 'p' && lastTag) {
+        if (nonCollapsedWhiteSpaceElements.indexOf(lastTag) == -1 && lastTag) {
           text = text.replace(/[\n\s\t\r]+$/im, '')
         }
 
